@@ -21,12 +21,12 @@ data class Team (val players: List<Player>, val name: TeamName) {
     val hasEnoughStartingPlayers : Boolean
         get() = players.count { it.isStarting } > 14
 
+    fun scrumhalf() : Player? = players.find { Position.SCRUM_HALF == it.position }
+
     /**
      * The captain, when present, should always where back number 7
      */
-    fun captainBackNumber(): Int? {
-        throw NotImplementedException()
-    }
+    fun captainBackNumber(): Int? = scrumhalf()!!.backNumber
 
     /**
      * When no scrumhalf present (player with back number 7)
