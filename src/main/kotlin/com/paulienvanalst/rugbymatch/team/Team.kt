@@ -32,9 +32,7 @@ data class Team (val players: List<Player>, val name: TeamName) {
      * When no scrumhalf present (player with back number 7)
      * the captain is wearing the first back number we can find among the starting players.
      */
-    fun replacingCaptainBackNumber(): Int? {
-        throw NotImplementedException()
-    }
+    fun replacingCaptainBackNumber(): Int? = scrumhalf()?.backNumber ?: players.map { it.backNumber }.min()
 
 
 }
